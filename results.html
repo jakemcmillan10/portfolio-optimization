@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Optimization Results</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Portfolio Optimization Results</h1>
+
+    <h2>Optimal Weights</h2>
+    <table>
+        <tr>
+            <th>Ticker</th>
+            <th>Weight</th>
+        </tr>
+        {% for ticker, weight in results.tickers_weights %}
+        <tr>
+            <td>{{ ticker }}</td>
+            <td>{{ weight }}%</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Portfolio Metrics</h2>
+    <p><strong>Portfolio Return:</strong> {{ results.portfolio_return }}%</p>
+    <p><strong>Portfolio Volatility:</strong> {{ results.portfolio_volatility }}%</p>
+    <p><strong>Sharpe Ratio:</strong> {{ results.sharpe_ratio }}</p>
+
+    <h2>Individual Sharpe Ratios for Stocks:</h2>
+    <ul>
+        {% for ticker, sharpe in results.individual_sharpe_ratios.items() %}
+            <li>{{ ticker }}: {{ sharpe }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="/">Back to Home</a>
+</body>
+</html>

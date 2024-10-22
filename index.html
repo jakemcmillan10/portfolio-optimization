@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Optimizer</title>
+</head>
+<body>
+    <h1>Portfolio Optimizer</h1>
+
+    {% if error %}
+        <p style="color:red">{{ error }}</p>
+    {% endif %}
+
+    <form action="/results" method="POST">
+        <label for="tickers">Stock Tickers (e.g., AAPL, MSFT):</label>
+        <input type="text" id="tickers" name="tickers" required><br><br>
+
+        <label for="years">Years of Data:</label>
+        <input type="number" id="years" name="years" min="1" required><br><br>
+
+        <label for="risk_free_rate">Risk-Free Rate (%):</label>
+        <input type="number" id="risk_free_rate" name="risk_free_rate" step="0.01" required><br><br>
+
+        <label for="short_selling">Enable Short Selling:</label>
+        <input type="radio" id="yes" name="short_selling" value="yes" checked> Yes
+        <input type="radio" id="no" name="short_selling" value="no"> No<br><br>
+
+        <input type="submit" value="Optimize Portfolio">
+    </form>
+
+    <br> <!-- Add a small space between the buttons -->
+
+    <form action="/export" method="POST">
+        <input type="submit" value="Export CSV">
+    </form>
+</body>
+</html>
